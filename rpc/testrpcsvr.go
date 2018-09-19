@@ -4,15 +4,15 @@ type TestRpcSvr struct {
 	*BaseTestRpcSvr
 }
 
-func (psvr *TestRpcSvr) BaseUrl() string {
-	return psvr.BaseTestRpcSvr.BaseUrl()
+func (tsvr *TestRpcSvr) BaseUrl() string {
+	return tsvr.BaseTestRpcSvr.BaseUrl()
 }
 
-func (psvr *TestRpcSvr) ServiceName() string {
+func (tsvr *TestRpcSvr) ServiceName() string {
 	return "rpc/testSvr"
 }
 
-func (psvr *TestRpcSvr) New() *TestRpcSvr {
-	psvr.BaseTestRpcSvr = new(BaseTestRpcSvr)
-	return psvr
+func (tsvr *TestRpcSvr) New() *TestRpcSvr {
+	tsvr.BaseTestRpcSvr = new(BaseTestRpcSvr)
+	return tsvr
 }

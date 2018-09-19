@@ -18,7 +18,7 @@ type RpcSvr interface {
 	ServiceName() string
 }
 
-type ReqArgs struct {
+type RpcReqArgs struct {
 	JsonRpc string        `json:"jsonrpc"`
 	Method  string        `json:"method"`
 	Params  []interface{} `json:"params"`
@@ -32,7 +32,7 @@ type RpcResp struct {
 	Error   interface{}            `json:"error"`
 }
 
-func Call(rpc RpcSvr, args *ReqArgs) (reslut map[string]interface{}, err error) {
+func Call(rpc RpcSvr, args *RpcReqArgs) (reslut map[string]interface{}, err error) {
 	url := rpc.BaseUrl() + rpc.ServiceName()
 	args.JsonRpc = JSONRPC_VERSION
 	args.ID = DEFAULT_ID

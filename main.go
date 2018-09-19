@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	reqArgs := new(rpc.ReqArgs)
+	reqArgs := new(rpc.RpcReqArgs)
 	reqArgs.Method = "one"
 	reqArgs.Params = []interface{}{4071}
 

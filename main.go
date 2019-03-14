@@ -2,17 +2,19 @@ package main
 
 import (
 	"fmt"
+	"go-jsonrpc-demo/jsonrpc/test"
 
-	"go-jsonrpc-demo/rpc"
+	"go-jsonrpc-demo/jsonrpc"
 )
 
 func main() {
-	reqArgs := new(rpc.RpcReqArgs)
-	reqArgs.Method = "one"
-	reqArgs.Params = []interface{}{4071}
+	reqArgs := &jsonrpc.RpcReqArgs{
+		Method: test.MethodOne,
+		Params: []interface{}{4071},
+	}
 
-	testSvr := new(rpc.TestRpcSvr).New()
-	result, err := rpc.Call(testSvr, reqArgs)
+	testSvr := new(test.RpcSvr)
+	result, err := jsonrpc.Call(testSvr, reqArgs)
 	if nil != err {
 		fmt.Println(err)
 		return

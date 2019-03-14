@@ -1,4 +1,4 @@
-package rpc
+package jsonrpc
 
 import (
 	"bytes"
@@ -9,8 +9,8 @@ import (
 )
 
 const (
-	JSONRPC_VERSION = "2.0"
-	DEFAULT_ID      = 1
+	Version   = "2.0"
+	DefaultID = 1
 )
 
 type RpcSvr interface {
@@ -26,16 +26,16 @@ type RpcReqArgs struct {
 }
 
 type RpcResp struct {
-	JsonRpc string                 `json:"jsonrpc"`
-	Result  map[string]interface{} `json:"result"`
-	ID      uint8                  `json:"id"`
-	Error   interface{}            `json:"error"`
+	JsonRpc string      `json:"jsonrpc"`
+	Result  interface{} `json:"result"`
+	ID      uint8       `json:"id"`
+	Error   interface{} `json:"error"`
 }
 
-func Call(rpc RpcSvr, args *RpcReqArgs) (reslut map[string]interface{}, err error) {
-	url := rpc.BaseUrl() + rpc.ServiceName()
-	args.JsonRpc = JSONRPC_VERSION
-	args.ID = DEFAULT_ID
+func Call(rpc RpcSvr, args *RpcReqArgs) (result interface{}, err error) {
+	url := fmt.Sprintf("%s/%s", rpc.BaseUrl(), rpc.ServiceName())
+	args.JsonRpc = Version
+	args.ID = DefaultID
 
 	data, err := json.Marshal(args)
 	if nil != err {
